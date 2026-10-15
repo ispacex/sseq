@@ -1,6 +1,13 @@
 //! Resolves an unstable module and prints `n,s,e,num_gens` where e is the Q-weight
 //! (number of Milnor Q_i's) of each generator, read off from its differential.
 //! Checks that every differential is homogeneous in Q-weight; panics otherwise.
+//!
+//! At odd p the Steenrod algebra is graded by the number of Q's in the Milnor basis (the dual
+//! A_* is graded by the number of tau's, and the coproduct keeps it), so a minimal resolution
+//! built by row reduction is automatically weight-homogeneous: Ext^{s,t} splits by e. Here
+//! `n = t - s`, `e` = weight of the generator. Requires the Milnor basis (the default).
+//!
+//! Example: `printf 'S_3[3]\n\n150\n60\n' | target/release/examples/qgrade_dims`
 
 use std::collections::HashMap;
 
